@@ -15,6 +15,7 @@ from aerounits import Q_
 
 
 def main() -> None:
+    """Run the atmosphere/flow-property example and print the results."""
     cruise_altitude = Q_(5_000, "m")
     cruise_speed = Q_(220, "m/s")
 

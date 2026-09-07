@@ -15,7 +15,8 @@ It is built for aerospace engineering students, researchers, universities,
 UAV developers, satellite engineers, and aerospace startups who need real,
 citable, tested engineering calculations — not toy demonstrations.
 
-> **Status:** Phase 1 (Foundation) is complete. See [Roadmap](#roadmap).
+> **Status:** Phase 1 (Foundation) and Phase 2 (Aerodynamics) are complete.
+> See [Roadmap](#roadmap).
 
 ## Design principles
 
@@ -42,6 +43,12 @@ gdxaerospace/
 ├── packages/
 │   ├── aerounits/     # SI/Imperial unit system built on Pint
 │   ├── aerocalc/      # Atmosphere, Mach/Reynolds/dynamic pressure, core numerics
+│   ├── airfoilpy/     # NACA 4/5-digit airfoil geometry
+│   ├── wingtools/     # Finite-wing lift-curve-slope & induced drag corrections
+│   ├── dragpy/        # Skin-friction & parasitic drag build-up
+│   ├── compressibleflow/  # Isentropic flow relations
+│   ├── shockpy/       # Normal/oblique shocks, Prandtl-Meyer expansion
+│   ├── boundarylayer/ # Laminar/turbulent boundary-layer relations
 │   └── ...            # more packages land in later phases
 ├── docs/
 ├── examples/
@@ -89,6 +96,20 @@ speed = Q_(250, "knot").to("m/s")
 print(speed)
 ```
 
+```python
+from airfoilpy import naca4_coordinates
+from shockpy import normal_shock, oblique_shock
+import math
+
+coords = naca4_coordinates("2412", n_points=200)
+
+shock = normal_shock(mach1=2.0)
+print(shock.mach_downstream, shock.pressure_ratio)  # 0.577, 4.5
+
+oblique = oblique_shock(mach1=2.0, deflection=math.radians(10.0))
+print(math.degrees(oblique.shock_angle))  # ~39.3 deg
+```
+
 ## Testing
 
 ```bash
@@ -103,7 +124,7 @@ package's `tests/` directory and docstrings for the specific source cited.
 
 - [x] **Phase 1 — Foundation**: repo architecture, `aerounits`, `aerocalc`
       core, exceptions, test/doc framework, CI/CD
-- [ ] **Phase 2 — Aerodynamics**: `airfoilpy`, `wingtools`, `dragpy`,
+- [x] **Phase 2 — Aerodynamics**: `airfoilpy`, `wingtools`, `dragpy`,
       `compressibleflow`, `shockpy`, `boundarylayer`
 - [ ] **Phase 3 — Propulsion**: `aeroprop`, `rocketperf`, `nozzleanalysis`,
       `combustionpy`, `turbomachpy`

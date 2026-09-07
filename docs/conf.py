@@ -5,6 +5,12 @@ import sys
 
 sys.path.insert(0, os.path.abspath("../packages/aerounits/src"))
 sys.path.insert(0, os.path.abspath("../packages/aerocalc/src"))
+sys.path.insert(0, os.path.abspath("../packages/airfoilpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/wingtools/src"))
+sys.path.insert(0, os.path.abspath("../packages/dragpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/compressibleflow/src"))
+sys.path.insert(0, os.path.abspath("../packages/shockpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/boundarylayer/src"))
 
 project = "GDX Aerospace"
 copyright = "2026, GDX Tech Co. Ltd"
