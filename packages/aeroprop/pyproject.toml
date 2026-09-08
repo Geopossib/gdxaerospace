@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aeroprop"
+version = "0.1.0"
+description = "General propulsion performance relations (thrust, Isp, TSFC, propulsive efficiency) for the GDX Aerospace ecosystem"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "GDX Tech Co. Ltd" }]
+dependencies = [
+    "numpy>=1.26",
+    "aerocalc",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aeroprop"]
+
+[tool.uv.sources]
+aerocalc = { workspace = true }
+aerounits = { workspace = true }
+compressibleflow = { workspace = true }

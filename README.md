@@ -15,8 +15,8 @@ It is built for aerospace engineering students, researchers, universities,
 UAV developers, satellite engineers, and aerospace startups who need real,
 citable, tested engineering calculations — not toy demonstrations.
 
-> **Status:** Phase 1 (Foundation) and Phase 2 (Aerodynamics) are complete.
-> See [Roadmap](#roadmap).
+> **Status:** Phase 1 (Foundation), Phase 2 (Aerodynamics), and Phase 3
+> (Propulsion) are complete. See [Roadmap](#roadmap).
 
 ## Design principles
 
@@ -49,6 +49,11 @@ gdxaerospace/
 │   ├── compressibleflow/  # Isentropic flow relations
 │   ├── shockpy/       # Normal/oblique shocks, Prandtl-Meyer expansion
 │   ├── boundarylayer/ # Laminar/turbulent boundary-layer relations
+│   ├── aeroprop/      # General air-breathing thrust, Isp, TSFC, propulsive efficiency
+│   ├── rocketperf/    # Rocket Isp, c*, CF, ideal rocket equation
+│   ├── nozzleanalysis/ # Isentropic nozzle flow (choked mass flow, exit conditions)
+│   ├── combustionpy/  # Combustion stoichiometry & simplified temperature rise
+│   ├── turbomachpy/   # Compressor/turbine stage temperature change & work
 │   └── ...            # more packages land in later phases
 ├── docs/
 ├── examples/
@@ -126,7 +131,7 @@ package's `tests/` directory and docstrings for the specific source cited.
       core, exceptions, test/doc framework, CI/CD
 - [x] **Phase 2 — Aerodynamics**: `airfoilpy`, `wingtools`, `dragpy`,
       `compressibleflow`, `shockpy`, `boundarylayer`
-- [ ] **Phase 3 — Propulsion**: `aeroprop`, `rocketperf`, `nozzleanalysis`,
+- [x] **Phase 3 — Propulsion**: `aeroprop`, `rocketperf`, `nozzleanalysis`,
       `combustionpy`, `turbomachpy`
 - [ ] **Phase 4 — Electric propulsion**: `electricprop`, `plasmathrust`,
       `plume3d`, `plasmaspace`

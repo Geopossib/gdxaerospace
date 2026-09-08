@@ -3,6 +3,30 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.3.0] — Phase 3: Propulsion
+
+### Added
+- `aeroprop`: uninstalled air-breathing thrust equation, specific impulse,
+  thrust-specific fuel consumption, and propulsive (Froude) efficiency,
+  per Mattingly's *Elements of Gas Turbine Propulsion*.
+- `rocketperf`: effective exhaust velocity, specific impulse,
+  characteristic velocity (c*), thrust coefficient (CF), and the ideal
+  (Tsiolkovsky) rocket equation with its inverse, per Sutton & Biblarz's
+  *Rocket Propulsion Elements*.
+- `nozzleanalysis`: choked mass flow through a converging-diverging
+  nozzle, a bisection solver inverting the isentropic area-Mach relation
+  for exit Mach number, and isentropic exit temperature/velocity.
+- `combustionpy`: stoichiometric air-fuel ratio for `CxHyOz` hydrocarbon
+  fuels (validated against Turns's published reference values), the
+  equivalence ratio, and a clearly-labeled simplified constant-cp
+  adiabatic temperature-rise estimate for conceptual-design screening.
+- `turbomachpy`: compressor and turbine stage actual temperature
+  change and specific work from pressure ratio and isentropic efficiency,
+  per Mattingly and Cohen/Rogers/Saravanamuttoo's *Gas Turbine Theory*.
+- Propulsion theory docs and API reference pages for all five packages.
+- Example script analyzing a liquid rocket engine and a simple turbojet
+  Brayton cycle end-to-end.
+
 ## [0.2.0] — Phase 2: Aerodynamics
 
 ### Added

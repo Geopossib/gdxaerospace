@@ -11,6 +11,7 @@ quickstart
 theory/atmosphere
 theory/airfoils-and-wings
 theory/compressible-flow
+theory/propulsion
 api/aerocalc
 api/aerounits
 api/airfoilpy
@@ -19,5 +20,10 @@ api/dragpy
 api/compressibleflow
 api/shockpy
 api/boundarylayer
+api/aeroprop
+api/rocketperf
+api/nozzleanalysis
+api/combustionpy
+api/turbomachpy
 limitations
 ```

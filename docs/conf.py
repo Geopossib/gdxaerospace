@@ -11,6 +11,11 @@ sys.path.insert(0, os.path.abspath("../packages/dragpy/src"))
 sys.path.insert(0, os.path.abspath("../packages/compressibleflow/src"))
 sys.path.insert(0, os.path.abspath("../packages/shockpy/src"))
 sys.path.insert(0, os.path.abspath("../packages/boundarylayer/src"))
+sys.path.insert(0, os.path.abspath("../packages/aeroprop/src"))
+sys.path.insert(0, os.path.abspath("../packages/rocketperf/src"))
+sys.path.insert(0, os.path.abspath("../packages/nozzleanalysis/src"))
+sys.path.insert(0, os.path.abspath("../packages/combustionpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/turbomachpy/src"))
 
 project = "GDX Aerospace"
 copyright = "2026, GDX Tech Co. Ltd"
