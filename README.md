@@ -15,8 +15,8 @@ It is built for aerospace engineering students, researchers, universities,
 UAV developers, satellite engineers, and aerospace startups who need real,
 citable, tested engineering calculations — not toy demonstrations.
 
-> **Status:** Phase 1 (Foundation), Phase 2 (Aerodynamics), and Phase 3
-> (Propulsion) are complete. See [Roadmap](#roadmap).
+> **Status:** Phases 1-4 (Foundation, Aerodynamics, Propulsion, Electric
+> Propulsion) are complete. See [Roadmap](#roadmap).
 
 ## Design principles
 
@@ -54,6 +54,10 @@ gdxaerospace/
 │   ├── nozzleanalysis/ # Isentropic nozzle flow (choked mass flow, exit conditions)
 │   ├── combustionpy/  # Combustion stoichiometry & simplified temperature rise
 │   ├── turbomachpy/   # Compressor/turbine stage temperature change & work
+│   ├── plasmathrust/  # Fundamental plasma parameters (Debye length, cyclotron motion)
+│   ├── electricprop/  # Ion/Hall thruster exhaust velocity, thrust, Isp, efficiency
+│   ├── plume3d/       # Simplified plume-divergence thrust/Isp loss
+│   ├── plasmaspace/   # Spacecraft floating potential (plasma current balance)
 │   └── ...            # more packages land in later phases
 ├── docs/
 ├── examples/
@@ -115,6 +119,13 @@ oblique = oblique_shock(mach1=2.0, deflection=math.radians(10.0))
 print(math.degrees(oblique.shock_angle))  # ~39.3 deg
 ```
 
+```python
+from electricprop import HallThruster
+
+thruster = HallThruster(voltage=300.0, current=4.5, mass_flow=5e-6)
+print(thruster.thrust(), thruster.specific_impulse(), thruster.efficiency())
+```
+
 ## Testing
 
 ```bash
@@ -133,7 +144,7 @@ package's `tests/` directory and docstrings for the specific source cited.
       `compressibleflow`, `shockpy`, `boundarylayer`
 - [x] **Phase 3 — Propulsion**: `aeroprop`, `rocketperf`, `nozzleanalysis`,
       `combustionpy`, `turbomachpy`
-- [ ] **Phase 4 — Electric propulsion**: `electricprop`, `plasmathrust`,
+- [x] **Phase 4 — Electric propulsion**: `electricprop`, `plasmathrust`,
       `plume3d`, `plasmaspace`
 - [ ] **Phase 5 — Flight dynamics**: `flightdyn`, `aircraftsim`,
       `attitude3d`, `guidancepy`, `navigationpy`, `autopilotpy`,

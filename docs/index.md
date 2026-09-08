@@ -12,6 +12,7 @@ theory/atmosphere
 theory/airfoils-and-wings
 theory/compressible-flow
 theory/propulsion
+theory/electric-propulsion
 api/aerocalc
 api/aerounits
 api/airfoilpy
@@ -25,5 +26,9 @@ api/rocketperf
 api/nozzleanalysis
 api/combustionpy
 api/turbomachpy
+api/electricprop
+api/plasmathrust
+api/plume3d
+api/plasmaspace
 limitations
 ```

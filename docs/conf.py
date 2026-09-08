@@ -16,6 +16,10 @@ sys.path.insert(0, os.path.abspath("../packages/rocketperf/src"))
 sys.path.insert(0, os.path.abspath("../packages/nozzleanalysis/src"))
 sys.path.insert(0, os.path.abspath("../packages/combustionpy/src"))
 sys.path.insert(0, os.path.abspath("../packages/turbomachpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/plasmathrust/src"))
+sys.path.insert(0, os.path.abspath("../packages/electricprop/src"))
+sys.path.insert(0, os.path.abspath("../packages/plume3d/src"))
+sys.path.insert(0, os.path.abspath("../packages/plasmaspace/src"))
 
 project = "GDX Aerospace"
 copyright = "2026, GDX Tech Co. Ltd"

@@ -3,6 +3,30 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.4.0] — Phase 4: Electric Propulsion
+
+### Added
+- `plasmathrust`: fundamental plasma parameters (Debye length, plasma
+  frequency, electron/ion cyclotron frequency, Larmor radius, Hall
+  parameter, Bohm velocity) and a shared physical-constants module with
+  common electric-propulsion propellant ion masses (xenon, krypton,
+  argon, hydrogen).
+- `electricprop`: ideal electrostatic exhaust velocity, thrust from beam
+  current, specific impulse, and total thrust efficiency (Goebel & Katz),
+  plus `HallThruster`/`IonThruster` convenience classes.
+- `plume3d`: a simplified single-angle plume-divergence correction for
+  thrust and specific impulse, explicitly documented as an optimistic
+  upper bound relative to a full angular current-density integral.
+- `plasmaspace`: floating potential of an isolated conductor in a
+  Maxwellian plasma, derived from first principles (electron thermal
+  flux vs. Bohm ion flux current balance) and validated against the
+  well-known reference coefficient for argon (~4.68 * Te[eV]).
+- Electric-propulsion/plasma theory docs and API reference pages for all
+  four packages.
+- Example script comparing Hall vs. ion thruster performance, checking
+  Hall-thruster electron magnetization, and estimating spacecraft
+  floating potential.
+
 ## [0.3.0] — Phase 3: Propulsion
 
 ### Added
