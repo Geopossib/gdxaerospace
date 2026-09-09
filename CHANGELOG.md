@@ -3,6 +3,45 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.5.0] — Phase 5: Flight Dynamics, Guidance, Navigation, and Control
+
+### Added
+- `attitude3d`: Euler angle (3-2-1 sequence), DCM, and quaternion
+  conversions, quaternion kinematics, and a Shepperd-algorithm
+  DCM-to-quaternion solver that stays numerically robust near 180-degree
+  rotations (unlike a naive trace-only method).
+- `flightdyn`: rigid-body 6-DOF equations of motion — translational
+  acceleration (with the rotating-frame Coriolis-like term), Euler's
+  rotational equations (general inertia matrix or diagonal shortcut),
+  body-frame gravity, and position kinematics.
+- `aircraftsim`: `Aircraft6DOF`, an RK4-integrated 6-DOF simulator
+  combining `flightdyn`/`attitude3d` with a generic linear
+  stability-derivative aerodynamic model (`LinearAeroModel`), matching
+  the API shape from the original project brief. Illustrative default
+  coefficients only — not validated flight data for any real aircraft.
+- `guidancepy`: proportional navigation (line-of-sight rate, closing
+  velocity, PN acceleration command) per Zarchan, plus waypoint
+  bearing/distance and signed cross-track error.
+- `navigationpy`: great-circle distance and initial bearing (haversine),
+  and dead-reckoning position propagation (direct geodesic problem on a
+  sphere), validated against the well-known JFK-LHR great-circle distance.
+- `autopilotpy`: a discrete PID controller with conditional-integration
+  anti-windup, plus `AltitudeHoldAutopilot`/`HeadingHoldAutopilot`
+  wrappers (the latter with correct 0/360-degree heading wraparound).
+- `kalmanflight`: a discrete linear Kalman filter with Joseph-form
+  covariance update, validated against a hand-computable scalar case and
+  a classic constant-velocity tracking scenario.
+- Flight dynamics/GNC theory docs and API reference pages for all seven
+  packages; an example script flying a closed-loop altitude-hold climb
+  and demonstrating guidance/navigation/estimation together.
+
+### Fixed
+- `AltitudeHoldAutopilot` had an inverted sign convention relative to
+  `LinearAeroModel`'s `Cm_elevator` (correctly negative per the standard
+  aerospace convention), which caused closed-loop divergence into a dive.
+  Corrected the error sign so climbing now correctly commands negative
+  (nose-up) elevator.
+
 ## [0.4.0] — Phase 4: Electric Propulsion
 
 ### Added

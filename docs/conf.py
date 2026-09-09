@@ -20,6 +20,13 @@ sys.path.insert(0, os.path.abspath("../packages/plasmathrust/src"))
 sys.path.insert(0, os.path.abspath("../packages/electricprop/src"))
 sys.path.insert(0, os.path.abspath("../packages/plume3d/src"))
 sys.path.insert(0, os.path.abspath("../packages/plasmaspace/src"))
+sys.path.insert(0, os.path.abspath("../packages/attitude3d/src"))
+sys.path.insert(0, os.path.abspath("../packages/flightdyn/src"))
+sys.path.insert(0, os.path.abspath("../packages/aircraftsim/src"))
+sys.path.insert(0, os.path.abspath("../packages/guidancepy/src"))
+sys.path.insert(0, os.path.abspath("../packages/navigationpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/autopilotpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/kalmanflight/src"))
 
 project = "GDX Aerospace"
 copyright = "2026, GDX Tech Co. Ltd"

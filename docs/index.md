@@ -13,6 +13,7 @@ theory/airfoils-and-wings
 theory/compressible-flow
 theory/propulsion
 theory/electric-propulsion
+theory/flight-dynamics-and-gnc
 api/aerocalc
 api/aerounits
 api/airfoilpy
@@ -30,5 +31,12 @@ api/electricprop
 api/plasmathrust
 api/plume3d
 api/plasmaspace
+api/attitude3d
+api/flightdyn
+api/aircraftsim
+api/guidancepy
+api/navigationpy
+api/autopilotpy
+api/kalmanflight
 limitations
 ```

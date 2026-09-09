@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "flightdyn"
+version = "0.1.0"
+description = "Rigid-body 6-DOF flight dynamics equations of motion for the GDX Aerospace ecosystem"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "GDX Tech Co. Ltd" }]
+dependencies = [
+    "numpy>=1.26",
+    "aerocalc",
+    "attitude3d",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/flightdyn"]
+
+[tool.uv.sources]
+aerocalc = { workspace = true }
+attitude3d = { workspace = true }
+flightdyn = { workspace = true }

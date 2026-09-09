@@ -15,8 +15,8 @@ It is built for aerospace engineering students, researchers, universities,
 UAV developers, satellite engineers, and aerospace startups who need real,
 citable, tested engineering calculations — not toy demonstrations.
 
-> **Status:** Phases 1-4 (Foundation, Aerodynamics, Propulsion, Electric
-> Propulsion) are complete. See [Roadmap](#roadmap).
+> **Status:** Phases 1-5 (Foundation, Aerodynamics, Propulsion, Electric
+> Propulsion, and Flight Dynamics/GNC) are complete. See [Roadmap](#roadmap).
 
 ## Design principles
 
@@ -58,6 +58,13 @@ gdxaerospace/
 │   ├── electricprop/  # Ion/Hall thruster exhaust velocity, thrust, Isp, efficiency
 │   ├── plume3d/       # Simplified plume-divergence thrust/Isp loss
 │   ├── plasmaspace/   # Spacecraft floating potential (plasma current balance)
+│   ├── attitude3d/    # Euler/DCM/quaternion attitude representation & kinematics
+│   ├── flightdyn/     # Rigid-body 6-DOF equations of motion
+│   ├── aircraftsim/   # Aircraft6DOF: RK4-integrated flight simulator
+│   ├── guidancepy/    # Proportional navigation & waypoint/cross-track guidance
+│   ├── navigationpy/  # Great-circle distance/bearing & dead reckoning
+│   ├── autopilotpy/   # PID controller (anti-windup) & altitude/heading hold
+│   ├── kalmanflight/  # Discrete linear Kalman filter (predict/update)
 │   └── ...            # more packages land in later phases
 ├── docs/
 ├── examples/
@@ -126,6 +133,18 @@ thruster = HallThruster(voltage=300.0, current=4.5, mass_flow=5e-6)
 print(thruster.thrust(), thruster.specific_impulse(), thruster.efficiency())
 ```
 
+```python
+from aircraftsim import Aircraft6DOF
+from autopilotpy import AltitudeHoldAutopilot
+
+aircraft = Aircraft6DOF(mass=1200.0, inertia=(1500.0, 2000.0, 3000.0), wing_area=16.2)
+altitude_hold = AltitudeHoldAutopilot()
+
+state = aircraft.state_snapshot()
+elevator = altitude_hold.command(state["altitude"], target_altitude=1050.0, dt=0.05)
+state = aircraft.step(dt=0.05, controls={"elevator": elevator, "throttle": 0.7})
+```
+
 ## Testing
 
 ```bash
@@ -146,7 +165,7 @@ package's `tests/` directory and docstrings for the specific source cited.
       `combustionpy`, `turbomachpy`
 - [x] **Phase 4 — Electric propulsion**: `electricprop`, `plasmathrust`,
       `plume3d`, `plasmaspace`
-- [ ] **Phase 5 — Flight dynamics**: `flightdyn`, `aircraftsim`,
+- [x] **Phase 5 — Flight dynamics**: `flightdyn`, `aircraftsim`,
       `attitude3d`, `guidancepy`, `navigationpy`, `autopilotpy`,
       `kalmanflight`
 - [ ] **Phase 6 — Space**: `orbitpy`, `satprop`, `tletools`, `groundtrack`,
