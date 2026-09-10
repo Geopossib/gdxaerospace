@@ -15,9 +15,9 @@ It is built for aerospace engineering students, researchers, universities,
 UAV developers, satellite engineers, and aerospace startups who need real,
 citable, tested engineering calculations — not toy demonstrations.
 
-> **Status:** Phases 1-7 (Foundation, Aerodynamics, Propulsion, Electric
-> Propulsion, Flight Dynamics/GNC, Space, and Satellite Telemetry) are
-> complete. See [Roadmap](#roadmap).
+> **Status:** Phases 1-8 (Foundation, Aerodynamics, Propulsion, Electric
+> Propulsion, Flight Dynamics/GNC, Space, Satellite Telemetry, and
+> Structures/Materials) are complete. See [Roadmap](#roadmap).
 
 ## Design principles
 
@@ -73,6 +73,14 @@ gdxaerospace/
 │   ├── missionpy/     # Eclipse fraction & delta-v budgets
 │   ├── constellationpy/ # Walker constellation pattern & coverage geometry
 │   ├── sattelemetry/  # CCSDS packet header, CRC-16, calibration, limits, archive
+│   ├── aeromaterials/ # Cited-source aerospace material property database
+│   ├── aerostruct/    # Cross-section geometric properties (area, I, J)
+│   ├── stresspy/      # Axial/bending/shear/torsion stress, von Mises, principal stresses
+│   ├── sparcalc/      # Cantilever beam deflection & shear flow
+│   ├── bucklingpy/    # Euler column & flat-plate buckling
+│   ├── fatiguepy/     # Basquin S-N fatigue life & Miner's rule
+│   ├── compositepy/   # Orthotropic lamina Q-matrix, transformation, failure criteria
+│   ├── laminatepy/    # Classical laminate theory (ABD matrix, laminate response)
 │   └── ...            # more packages land in later phases
 ├── docs/
 ├── examples/
@@ -180,6 +188,17 @@ decoded = TelemetryDecoder([layout]).decode(packet)
 print(decoded.values["battery_voltage"])  # ~3.907 V
 ```
 
+```python
+from aeromaterials import get_material
+from aerostruct import i_beam_properties
+from stresspy import bending_stress
+
+material = get_material("Al7075-T6")
+section = i_beam_properties(flange_width=0.06, flange_thickness=0.008, web_height=0.08, web_thickness=0.005)
+stress = bending_stress(moment=6000.0, distance_from_neutral_axis=0.048, moment_of_inertia=section.ixx)
+print(stress / 1e6, "MPa vs yield", material.yield_strength / 1e6, "MPa")
+```
+
 ## Testing
 
 ```bash
@@ -206,7 +225,7 @@ package's `tests/` directory and docstrings for the specific source cited.
 - [x] **Phase 6 — Space**: `orbitpy`, `satprop`, `tletools`, `groundtrack`,
       `missionpy`, `constellationpy`
 - [x] **Phase 7 — Satellite telemetry**: `sattelemetry`
-- [ ] **Phase 8 — Structures & materials**: `aerostruct`, `sparcalc`,
+- [x] **Phase 8 — Structures & materials**: `aerostruct`, `sparcalc`,
       `stresspy`, `fatiguepy`, `compositepy`, `laminatepy`, `bucklingpy`,
       `aeromaterials`
 - [ ] **Phase 9 — Thermal / CFD / data**: `aerothermal`, `aerocfd`,

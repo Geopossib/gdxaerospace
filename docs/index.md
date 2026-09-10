@@ -16,6 +16,7 @@ theory/electric-propulsion
 theory/flight-dynamics-and-gnc
 theory/orbital-mechanics
 theory/satellite-telemetry
+theory/structures-and-materials
 api/aerocalc
 api/aerounits
 api/airfoilpy
@@ -47,5 +48,13 @@ api/groundtrack
 api/missionpy
 api/constellationpy
 api/sattelemetry
+api/aeromaterials
+api/aerostruct
+api/stresspy
+api/sparcalc
+api/bucklingpy
+api/fatiguepy
+api/compositepy
+api/laminatepy
 limitations
 ```

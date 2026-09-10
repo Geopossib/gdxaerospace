@@ -34,6 +34,14 @@ sys.path.insert(0, os.path.abspath("../packages/groundtrack/src"))
 sys.path.insert(0, os.path.abspath("../packages/missionpy/src"))
 sys.path.insert(0, os.path.abspath("../packages/constellationpy/src"))
 sys.path.insert(0, os.path.abspath("../packages/sattelemetry/src"))
+sys.path.insert(0, os.path.abspath("../packages/aeromaterials/src"))
+sys.path.insert(0, os.path.abspath("../packages/aerostruct/src"))
+sys.path.insert(0, os.path.abspath("../packages/stresspy/src"))
+sys.path.insert(0, os.path.abspath("../packages/sparcalc/src"))
+sys.path.insert(0, os.path.abspath("../packages/bucklingpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/fatiguepy/src"))
+sys.path.insert(0, os.path.abspath("../packages/compositepy/src"))
+sys.path.insert(0, os.path.abspath("../packages/laminatepy/src"))
 
 project = "GDX Aerospace"
 copyright = "2026, GDX Tech Co. Ltd"

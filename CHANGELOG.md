@@ -3,6 +3,40 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.8.0] — Phase 8: Structures and Materials
+
+### Added
+- `aeromaterials`: a 5-material property database (Al 7075-T6, Al
+  2024-T3, Ti-6Al-4V, AISI 4340, ASTM A36 steel), every value cited to
+  MMPDS-01/ASM or the governing specification, with explicit caveats
+  where strength is too heat-treatment-dependent to responsibly quote.
+- `aerostruct`: cross-section geometric properties (rectangle, solid/
+  hollow circle, I-beam via parallel-axis composite decomposition).
+- `stresspy`: axial, bending, transverse-shear, and torsional stress;
+  von Mises equivalent stress; principal stresses via Mohr's circle.
+  Validated against real invariants (trace preservation, pure-shear
+  von Mises = sqrt(3)*tau).
+- `sparcalc`: cantilever beam tip deflection (point and distributed
+  load) and thin-wall shear flow.
+- `bucklingpy`: Euler column buckling for all four standard end
+  conditions (with the classic 4x/16x stiffness-ratio comparisons
+  verified directly) and flat-plate buckling.
+- `fatiguepy`: Basquin power-law S-N fatigue life and its inverse, and
+  Palmgren-Miner cumulative damage summation.
+- `compositepy`: orthotropic lamina reduced-stiffness (Q) matrix and
+  axis transformation (Q-bar), validated against the canonical
+  T300/5208 graphite-epoxy properties and self-consistency checks
+  (theta=0 recovers material axes, theta=90 swaps Q11/Q22, theta=45
+  gives Q11=Q22); max-stress and Tsai-Hill failure criteria.
+- `laminatepy`: Classical Laminate Theory ABD matrix assembly and
+  laminate mid-plane strain/curvature response to applied loads,
+  validated against the core CLT identity that a mid-plane-symmetric
+  laminate has exactly zero coupling stiffness (B = 0).
+- Structures/materials theory docs, API reference pages for all eight
+  packages, and an example script sizing a metallic I-beam spar
+  (bending, deflection, buckling, fatigue) and analyzing a symmetric
+  composite laminate panel.
+
 ## [0.7.0] — Phase 7: Satellite Telemetry
 
 ### Added

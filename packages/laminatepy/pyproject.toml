@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "laminatepy"
+version = "0.1.0"
+description = "Classical laminate theory (ABD matrix assembly and laminate response) for the GDX Aerospace ecosystem"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "GDX Tech Co. Ltd" }]
+dependencies = [
+    "numpy>=1.26",
+    "aerocalc",
+    "compositepy",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/laminatepy"]
+
+[tool.uv.sources]
+aerocalc = { workspace = true }
+aerostruct = { workspace = true }
+stresspy = { workspace = true }
+compositepy = { workspace = true }
