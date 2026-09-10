@@ -3,6 +3,39 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.6.0] — Phase 6: Space
+
+### Added
+- `orbitpy`: two-body Keplerian mechanics — orbital period, circular/
+  escape velocity, vis-viva equation, Kepler's equation solver, full
+  Keplerian-element/Cartesian-state-vector conversion (Vallado's
+  algorithms, round-trip verified across 6 orbit types), and Hohmann/
+  bi-elliptic transfers with plane-change delta-v. Confirms the
+  bi-elliptic-vs-Hohmann crossover at the ~11.94 radius-ratio threshold.
+- `tletools`: Two-Line Element checksum computation/validation and full
+  fixed-column field parsing, validated against the canonical Vallado
+  SGP4 verification TLE (ISS, epoch 2008) used across the field.
+- `satprop`: a thin wrapper around the MIT-licensed `sgp4` library for
+  TLE-based propagation (GDX Aerospace does not reimplement SGP4 --
+  see the project's "wrap, don't reinvent" stance in the docs), plus
+  analytic two-body propagation for non-TLE/hypothetical orbits built
+  on `orbitpy`.
+- `groundtrack`: Julian date, Greenwich Mean Sidereal Time, ECI-ECEF
+  rotation, WGS84 geodetic/ECEF conversion (round-trip verified
+  pole-to-equator), and topocentric azimuth/elevation/range look angles.
+- `missionpy`: cylindrical-shadow eclipse fraction/duration (derived
+  from first principles and cross-checked against the general
+  beta-angle formula via a trig identity) and an itemized delta-v
+  budget with margin.
+- `constellationpy`: Walker Delta ("i:t/p/f") constellation pattern
+  generation and single-satellite ground coverage geometry, validated
+  against a GPS-like 24-satellite/6-plane pattern.
+- Orbital mechanics theory docs, API reference pages for all six
+  packages, and an example script tying TLE propagation, ground
+  tracking, mission delta-v budgeting, and constellation geometry
+  together (its GPS-like coverage-angle output matches real GPS
+  constellation design figures).
+
 ## [0.5.0] — Phase 5: Flight Dynamics, Guidance, Navigation, and Control
 
 ### Added

@@ -27,6 +27,12 @@ sys.path.insert(0, os.path.abspath("../packages/guidancepy/src"))
 sys.path.insert(0, os.path.abspath("../packages/navigationpy/src"))
 sys.path.insert(0, os.path.abspath("../packages/autopilotpy/src"))
 sys.path.insert(0, os.path.abspath("../packages/kalmanflight/src"))
+sys.path.insert(0, os.path.abspath("../packages/orbitpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/tletools/src"))
+sys.path.insert(0, os.path.abspath("../packages/satprop/src"))
+sys.path.insert(0, os.path.abspath("../packages/groundtrack/src"))
+sys.path.insert(0, os.path.abspath("../packages/missionpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/constellationpy/src"))
 
 project = "GDX Aerospace"
 copyright = "2026, GDX Tech Co. Ltd"

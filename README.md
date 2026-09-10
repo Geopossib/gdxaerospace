@@ -15,8 +15,8 @@ It is built for aerospace engineering students, researchers, universities,
 UAV developers, satellite engineers, and aerospace startups who need real,
 citable, tested engineering calculations — not toy demonstrations.
 
-> **Status:** Phases 1-5 (Foundation, Aerodynamics, Propulsion, Electric
-> Propulsion, and Flight Dynamics/GNC) are complete. See [Roadmap](#roadmap).
+> **Status:** Phases 1-6 (Foundation, Aerodynamics, Propulsion, Electric
+> Propulsion, Flight Dynamics/GNC, and Space) are complete. See [Roadmap](#roadmap).
 
 ## Design principles
 
@@ -65,6 +65,12 @@ gdxaerospace/
 │   ├── navigationpy/  # Great-circle distance/bearing & dead reckoning
 │   ├── autopilotpy/   # PID controller (anti-windup) & altitude/heading hold
 │   ├── kalmanflight/  # Discrete linear Kalman filter (predict/update)
+│   ├── orbitpy/       # Two-body Keplerian mechanics, transfers, element conversions
+│   ├── tletools/      # TLE checksum validation & field parsing
+│   ├── satprop/       # SGP4 (wraps sgp4) and two-body satellite propagation
+│   ├── groundtrack/   # GMST, ECI/ECEF/geodetic frames, topocentric look angles
+│   ├── missionpy/     # Eclipse fraction & delta-v budgets
+│   ├── constellationpy/ # Walker constellation pattern & coverage geometry
 │   └── ...            # more packages land in later phases
 ├── docs/
 ├── examples/
@@ -145,6 +151,19 @@ elevator = altitude_hold.command(state["altitude"], target_altitude=1050.0, dt=0
 state = aircraft.step(dt=0.05, controls={"elevator": elevator, "throttle": 0.7})
 ```
 
+```python
+import datetime as dt
+from satprop import propagate_tle
+from orbitpy import hohmann_transfer
+
+line1 = "1 25544U 98067A   08264.51782528 -.00002182  00000-0 -11606-4 0  2927"
+line2 = "2 25544  51.6416 247.4627 0006703 130.5360 325.0288 15.72125391563537"
+position, velocity = propagate_tle(line1, line2, dt.datetime(2008, 9, 20, 12, 25, 40))
+
+transfer = hohmann_transfer(r1=6_678_000.0, r2=42_164_000.0)  # LEO -> GEO
+print(transfer.total_delta_v)  # ~3893 m/s
+```
+
 ## Testing
 
 ```bash
@@ -168,7 +187,7 @@ package's `tests/` directory and docstrings for the specific source cited.
 - [x] **Phase 5 — Flight dynamics**: `flightdyn`, `aircraftsim`,
       `attitude3d`, `guidancepy`, `navigationpy`, `autopilotpy`,
       `kalmanflight`
-- [ ] **Phase 6 — Space**: `orbitpy`, `satprop`, `tletools`, `groundtrack`,
+- [x] **Phase 6 — Space**: `orbitpy`, `satprop`, `tletools`, `groundtrack`,
       `missionpy`, `constellationpy`
 - [ ] **Phase 7 — Satellite telemetry**: `sattelemetry`
 - [ ] **Phase 8 — Structures & materials**: `aerostruct`, `sparcalc`,

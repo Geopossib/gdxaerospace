@@ -14,6 +14,7 @@ theory/compressible-flow
 theory/propulsion
 theory/electric-propulsion
 theory/flight-dynamics-and-gnc
+theory/orbital-mechanics
 api/aerocalc
 api/aerounits
 api/airfoilpy
@@ -38,5 +39,11 @@ api/guidancepy
 api/navigationpy
 api/autopilotpy
 api/kalmanflight
+api/orbitpy
+api/tletools
+api/satprop
+api/groundtrack
+api/missionpy
+api/constellationpy
 limitations
 ```
