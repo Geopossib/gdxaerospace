@@ -3,6 +3,39 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.7.0] — Phase 7: Satellite Telemetry
+
+### Added
+- `sattelemetry`: a full CCSDS-style telemetry decode/validate/
+  calibrate/archive pipeline --
+  - CCSDS Space Packet primary header pack/unpack (CCSDS 133.0-B-2),
+    round-trip verified across all fields at non-trivial values.
+  - CRC-16/CCITT-FALSE checksum, anchored to the standard published
+    check value (0x29B1 for "123456789").
+  - Polynomial raw-to-engineering-unit channel calibration.
+  - A packet decoder tying header + CRC + channels together into named,
+    calibrated values from raw bytes.
+  - Red/yellow limit checking, the standard first-line spacecraft
+    operations anomaly-detection method.
+  - An in-memory, queryable telemetry archive with z-score statistical
+    outlier detection.
+- Satellite telemetry theory/architecture docs, an API reference page,
+  and an example script simulating a telemetry pass with an injected
+  anomaly, caught independently by both the limit checker and the
+  statistical outlier detector.
+
+### Fixed (during development, before release)
+- The packet decoder initially computed CRC over the data field when
+  building a packet but verified it over header+data when decoding --
+  a scope mismatch that made every valid packet fail verification.
+  Fixed by settling on and documenting one explicit convention (CRC
+  covers the data field only, matching the ECSS/PUS standard).
+- The archive's first outlier-detection doctest example didn't actually
+  trigger detection: a single extreme outlier in a short series
+  inflates its own standard deviation enough to mask itself (a known
+  z-score limitation). Fixed with a longer, more representative example
+  series and documented the limitation explicitly.
+
 ## [0.6.0] — Phase 6: Space
 
 ### Added

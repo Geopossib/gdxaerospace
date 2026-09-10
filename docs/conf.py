@@ -33,6 +33,7 @@ sys.path.insert(0, os.path.abspath("../packages/satprop/src"))
 sys.path.insert(0, os.path.abspath("../packages/groundtrack/src"))
 sys.path.insert(0, os.path.abspath("../packages/missionpy/src"))
 sys.path.insert(0, os.path.abspath("../packages/constellationpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/sattelemetry/src"))
 
 project = "GDX Aerospace"
 copyright = "2026, GDX Tech Co. Ltd"

@@ -15,8 +15,9 @@ It is built for aerospace engineering students, researchers, universities,
 UAV developers, satellite engineers, and aerospace startups who need real,
 citable, tested engineering calculations — not toy demonstrations.
 
-> **Status:** Phases 1-6 (Foundation, Aerodynamics, Propulsion, Electric
-> Propulsion, Flight Dynamics/GNC, and Space) are complete. See [Roadmap](#roadmap).
+> **Status:** Phases 1-7 (Foundation, Aerodynamics, Propulsion, Electric
+> Propulsion, Flight Dynamics/GNC, Space, and Satellite Telemetry) are
+> complete. See [Roadmap](#roadmap).
 
 ## Design principles
 
@@ -71,6 +72,7 @@ gdxaerospace/
 │   ├── groundtrack/   # GMST, ECI/ECEF/geodetic frames, topocentric look angles
 │   ├── missionpy/     # Eclipse fraction & delta-v budgets
 │   ├── constellationpy/ # Walker constellation pattern & coverage geometry
+│   ├── sattelemetry/  # CCSDS packet header, CRC-16, calibration, limits, archive
 │   └── ...            # more packages land in later phases
 ├── docs/
 ├── examples/
@@ -164,6 +166,20 @@ transfer = hohmann_transfer(r1=6_678_000.0, r2=42_164_000.0)  # LEO -> GEO
 print(transfer.total_delta_v)  # ~3893 m/s
 ```
 
+```python
+import struct
+from sattelemetry import PacketLayout, TelemetryChannel, TelemetryDecoder, append_crc, pack_primary_header
+
+layout = PacketLayout(
+    name="housekeeping", apid=100,
+    channels=(TelemetryChannel("battery_voltage", 0, "u16", "V", (0.0, 5.0 / 4095.0)),),
+)
+data = append_crc(struct.pack(">H", 3200))
+packet = pack_primary_header(apid=100, data_length=len(data)) + data
+decoded = TelemetryDecoder([layout]).decode(packet)
+print(decoded.values["battery_voltage"])  # ~3.907 V
+```
+
 ## Testing
 
 ```bash
@@ -189,7 +205,7 @@ package's `tests/` directory and docstrings for the specific source cited.
       `kalmanflight`
 - [x] **Phase 6 — Space**: `orbitpy`, `satprop`, `tletools`, `groundtrack`,
       `missionpy`, `constellationpy`
-- [ ] **Phase 7 — Satellite telemetry**: `sattelemetry`
+- [x] **Phase 7 — Satellite telemetry**: `sattelemetry`
 - [ ] **Phase 8 — Structures & materials**: `aerostruct`, `sparcalc`,
       `stresspy`, `fatiguepy`, `compositepy`, `laminatepy`, `bucklingpy`,
       `aeromaterials`
