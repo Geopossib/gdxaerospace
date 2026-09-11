@@ -3,6 +3,33 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.9.0] — Phase 9: Thermal Analysis, CFD Automation, and Flight Data
+
+### Added
+- `aerothermal`: conduction (Fourier), convection (Newton's law of
+  cooling), and radiation (Stefan-Boltzmann) heat transfer; series/
+  parallel thermal resistance networks; lumped-capacitance transient
+  response; and a spacecraft radiative-equilibrium temperature estimate.
+- `aerocfd`: a Python automation layer around OpenFOAM -- case-file
+  generation (correct FoamFile dictionary syntax for controlDict,
+  transportProperties, turbulenceProperties, and the U/p fields),
+  availability detection, and forceCoeffs post-processing. Never
+  assumes OpenFOAM is installed: detects its absence and raises a
+  clear error with install instructions rather than a bare subprocess
+  failure, matching the project's original design requirement.
+- `aerodata`: pandas-based flight-test/telemetry time-series analysis
+  -- moving-average smoothing, linear resampling to a uniform time
+  base, descriptive statistics, and z-score outlier detection.
+- Thermal/CFD/data theory docs, API reference pages for all three
+  packages, and an example script covering a spacecraft thermal
+  estimate, a full OpenFOAM case-generation-and-run-attempt workflow,
+  and flight-data outlier detection (including a worked demonstration
+  of why detrending before z-score screening matters -- the first
+  version of the demo's undetrended series masked its own injected
+  glitch, exactly the documented z-score limitation, and detrending
+  fixed it).
+- 717 tests + 180 doctests passing, ruff clean across all 41 packages.
+
 ## [0.8.0] — Phase 8: Structures and Materials
 
 ### Added

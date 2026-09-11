@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aerocfd"
+version = "0.1.0"
+description = "A Python automation layer around OpenFOAM case generation and execution for the GDX Aerospace ecosystem"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "GDX Tech Co. Ltd" }]
+dependencies = [
+    "aerocalc",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/aerocfd"]
+
+[tool.uv.sources]
+aerocalc = { workspace = true }

@@ -17,6 +17,7 @@ theory/flight-dynamics-and-gnc
 theory/orbital-mechanics
 theory/satellite-telemetry
 theory/structures-and-materials
+theory/thermal-cfd-and-data
 api/aerocalc
 api/aerounits
 api/airfoilpy
@@ -56,5 +57,8 @@ api/bucklingpy
 api/fatiguepy
 api/compositepy
 api/laminatepy
+api/aerothermal
+api/aerocfd
+api/aerodata
 limitations
 ```

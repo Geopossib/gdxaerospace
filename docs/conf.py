@@ -42,6 +42,9 @@ sys.path.insert(0, os.path.abspath("../packages/bucklingpy/src"))
 sys.path.insert(0, os.path.abspath("../packages/fatiguepy/src"))
 sys.path.insert(0, os.path.abspath("../packages/compositepy/src"))
 sys.path.insert(0, os.path.abspath("../packages/laminatepy/src"))
+sys.path.insert(0, os.path.abspath("../packages/aerothermal/src"))
+sys.path.insert(0, os.path.abspath("../packages/aerocfd/src"))
+sys.path.insert(0, os.path.abspath("../packages/aerodata/src"))
 
 project = "GDX Aerospace"
 copyright = "2026, GDX Tech Co. Ltd"

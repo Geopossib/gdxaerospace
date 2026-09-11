@@ -15,9 +15,10 @@ It is built for aerospace engineering students, researchers, universities,
 UAV developers, satellite engineers, and aerospace startups who need real,
 citable, tested engineering calculations — not toy demonstrations.
 
-> **Status:** Phases 1-8 (Foundation, Aerodynamics, Propulsion, Electric
-> Propulsion, Flight Dynamics/GNC, Space, Satellite Telemetry, and
-> Structures/Materials) are complete. See [Roadmap](#roadmap).
+> **Status:** Phases 1-9 (Foundation, Aerodynamics, Propulsion, Electric
+> Propulsion, Flight Dynamics/GNC, Space, Satellite Telemetry,
+> Structures/Materials, and Thermal/CFD/Data) are complete. See
+> [Roadmap](#roadmap).
 
 ## Design principles
 
@@ -81,6 +82,9 @@ gdxaerospace/
 │   ├── fatiguepy/     # Basquin S-N fatigue life & Miner's rule
 │   ├── compositepy/   # Orthotropic lamina Q-matrix, transformation, failure criteria
 │   ├── laminatepy/    # Classical laminate theory (ABD matrix, laminate response)
+│   ├── aerothermal/   # Conduction/convection/radiation, thermal resistance networks
+│   ├── aerocfd/       # OpenFOAM case generation, execution, and post-processing
+│   ├── aerodata/      # Flight-test/telemetry filtering, resampling, outlier detection
 │   └── ...            # more packages land in later phases
 ├── docs/
 ├── examples/
@@ -199,6 +203,22 @@ stress = bending_stress(moment=6000.0, distance_from_neutral_axis=0.048, moment_
 print(stress / 1e6, "MPa vs yield", material.yield_strength / 1e6, "MPa")
 ```
 
+```python
+from aerothermal import spacecraft_equilibrium_temperature
+from aerocfd import OpenFOAMCase
+from aerodata import moving_average, detect_outliers_zscore
+
+t_eq = spacecraft_equilibrium_temperature(
+    solar_flux=1361.0, absorptivity=0.2, emissivity=0.85, area_absorbing=1.0, area_emitting=4.0
+)
+print(f"{t_eq:.1f} K")  # ~193.8 K
+
+case = OpenFOAMCase("naca0012_5deg")
+case.set_velocity(50.0)
+case.set_angle_of_attack(5.0)
+case.generate()  # writes 0/U, 0/p, constant/*, system/controlDict
+```
+
 ## Testing
 
 ```bash
@@ -228,7 +248,7 @@ package's `tests/` directory and docstrings for the specific source cited.
 - [x] **Phase 8 — Structures & materials**: `aerostruct`, `sparcalc`,
       `stresspy`, `fatiguepy`, `compositepy`, `laminatepy`, `bucklingpy`,
       `aeromaterials`
-- [ ] **Phase 9 — Thermal / CFD / data**: `aerothermal`, `aerocfd`,
+- [x] **Phase 9 — Thermal / CFD / data**: `aerothermal`, `aerocfd`,
       `aerodata`
 - [ ] **Phase 10 — UAV / AI / optimization**: `uavpy`, `aerovision`,
       `rockettraj`, `aeroopt`
