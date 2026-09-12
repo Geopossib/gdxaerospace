@@ -169,7 +169,7 @@ def gravity_body_frame(dcm_inertial_to_body: np.ndarray, *, g0: float = G0) -> n
     dcm = np.asarray(dcm_inertial_to_body, dtype=float)
     if dcm.shape != (3, 3):
         raise InvalidFlightDynamicsInputError(f"dcm must have shape (3, 3), got {dcm.shape}")
-    return dcm @ np.array([0.0, 0.0, g0])
+    return np.asarray(dcm @ np.array([0.0, 0.0, g0]))
 
 
 def position_derivative(dcm_inertial_to_body: np.ndarray, velocity_body: np.ndarray) -> np.ndarray:
@@ -203,4 +203,4 @@ def position_derivative(dcm_inertial_to_body: np.ndarray, velocity_body: np.ndar
         raise InvalidFlightDynamicsInputError(
             "dcm_inertial_to_body must have shape (3, 3) and velocity_body must have shape (3,)"
         )
-    return dcm.T @ v
+    return np.asarray(dcm.T @ v)

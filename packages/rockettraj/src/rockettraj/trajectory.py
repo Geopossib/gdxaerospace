@@ -121,7 +121,7 @@ class TrajectoryResult:
 
 def _air_density(altitude: float) -> float:
     clamped = min(max(altitude, 0.0), _MAX_ATMOSPHERE_ALTITUDE)
-    return Atmosphere(clamped).density
+    return float(Atmosphere(clamped).density)
 
 
 def _derivative(
@@ -142,16 +142,22 @@ def _derivative(
 def _rk4_step(
     state: tuple[float, float, float], t: float, dt: float, config: RocketConfig
 ) -> tuple[float, float, float]:
-    k1 = _derivative(state, t, config)
-    s2 = tuple(s + dt / 2 * k for s, k in zip(state, k1, strict=True))
-    k2 = _derivative(s2, t + dt / 2, config)
-    s3 = tuple(s + dt / 2 * k for s, k in zip(state, k2, strict=True))
-    k3 = _derivative(s3, t + dt / 2, config)
-    s4 = tuple(s + dt * k for s, k in zip(state, k3, strict=True))
-    k4 = _derivative(s4, t + dt, config)
-    return tuple(
-        s + (dt / 6) * (a + 2 * b + 2 * c + d)
-        for s, a, b, c, d in zip(state, k1, k2, k3, k4, strict=True)
+    a1, v1, m1 = state
+    k1a, k1v, k1m = _derivative(state, t, config)
+
+    s2 = (a1 + dt / 2 * k1a, v1 + dt / 2 * k1v, m1 + dt / 2 * k1m)
+    k2a, k2v, k2m = _derivative(s2, t + dt / 2, config)
+
+    s3 = (a1 + dt / 2 * k2a, v1 + dt / 2 * k2v, m1 + dt / 2 * k2m)
+    k3a, k3v, k3m = _derivative(s3, t + dt / 2, config)
+
+    s4 = (a1 + dt * k3a, v1 + dt * k3v, m1 + dt * k3m)
+    k4a, k4v, k4m = _derivative(s4, t + dt, config)
+
+    return (
+        a1 + (dt / 6) * (k1a + 2 * k2a + 2 * k3a + k4a),
+        v1 + (dt / 6) * (k1v + 2 * k2v + 2 * k3v + k4v),
+        m1 + (dt / 6) * (k1m + 2 * k2m + 2 * k3m + k4m),
     )
 
 

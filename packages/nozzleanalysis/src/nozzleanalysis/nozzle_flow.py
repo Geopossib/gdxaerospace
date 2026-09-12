@@ -21,6 +21,7 @@ from __future__ import annotations
 import math
 
 from compressibleflow.isentropic import GAMMA_AIR, area_mach_ratio, stagnation_temperature_ratio
+
 from nozzleanalysis.exceptions import InvalidNozzleInputError
 
 
@@ -80,7 +81,7 @@ def choked_mass_flow(
 
     g, r = gamma, specific_gas_constant
     coeff = math.sqrt(g / (r * chamber_temperature)) * (2 / (g + 1)) ** ((g + 1) / (2 * (g - 1)))
-    return throat_area * chamber_pressure * coeff
+    return float(throat_area * chamber_pressure * coeff)
 
 
 def exit_mach_from_area_ratio(

@@ -137,7 +137,7 @@ def eci_to_ecef(position_eci: np.ndarray, gmst_rad: float) -> np.ndarray:
         raise InvalidCoordinateError(f"position_eci must have shape (3,), got {r.shape}")
     c, s = math.cos(gmst_rad), math.sin(gmst_rad)
     rotation = np.array([[c, s, 0.0], [-s, c, 0.0], [0.0, 0.0, 1.0]])
-    return rotation @ r
+    return np.asarray(rotation @ r)
 
 
 def ecef_to_eci(position_ecef: np.ndarray, gmst_rad: float) -> np.ndarray:
@@ -160,4 +160,4 @@ def ecef_to_eci(position_ecef: np.ndarray, gmst_rad: float) -> np.ndarray:
         raise InvalidCoordinateError(f"position_ecef must have shape (3,), got {r.shape}")
     c, s = math.cos(gmst_rad), math.sin(gmst_rad)
     rotation = np.array([[c, -s, 0.0], [s, c, 0.0], [0.0, 0.0, 1.0]])
-    return rotation @ r
+    return np.asarray(rotation @ r)

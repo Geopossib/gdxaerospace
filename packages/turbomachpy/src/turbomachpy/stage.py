@@ -86,7 +86,7 @@ def compressor_temperature_rise(
     ideal_rise = inlet_temperature * (
         pressure_ratio ** ((gamma - 1) / gamma) - 1
     )
-    return ideal_rise / isentropic_efficiency
+    return float(ideal_rise / isentropic_efficiency)
 
 
 def turbine_temperature_drop(
@@ -133,7 +133,7 @@ def turbine_temperature_drop(
     """
     _check_common(inlet_temperature, pressure_ratio, isentropic_efficiency)
     ideal_drop = inlet_temperature * (1 - (1 / pressure_ratio) ** ((gamma - 1) / gamma))
-    return isentropic_efficiency * ideal_drop
+    return float(isentropic_efficiency * ideal_drop)
 
 
 def specific_work(specific_heat: float, temperature_change: float) -> float:

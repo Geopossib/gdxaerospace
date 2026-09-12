@@ -114,7 +114,7 @@ def gradient_magnitude(image: np.ndarray) -> np.ndarray:
 
     """
     gx, gy = sobel_gradients(image)
-    return np.sqrt(gx**2 + gy**2)
+    return np.asarray(np.sqrt(gx**2 + gy**2))
 
 
 def detect_linear_features(image: np.ndarray, threshold: float) -> np.ndarray:

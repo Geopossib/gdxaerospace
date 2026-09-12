@@ -3,6 +3,55 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.0.1] — CI Correctness Hardening
+
+This is a maintenance patch on top of the v1.0.0 complete-ecosystem
+release: it doesn't add features, it makes the CI pipeline actually
+verify what it claims to.
+
+### Fixed
+- **CI silently skipped every doctest.** The default `pytest` run (as
+  invoked by `tests.yml`) never included `--doctest-modules`, so none
+  of the 196 doctests across the ecosystem -- the primary mechanism
+  used throughout development to catch numeric errors before they
+  shipped -- were actually protected by CI. Fixed by adding
+  `--doctest-modules` to the root `pyproject.toml` pytest config and
+  including `tests/` in `testpaths`. Verified the exact CI invocation
+  (`pytest --maxfail=1`) now runs all 994 tests+doctests.
+- **`mypy` (also part of CI's `lint.yml`) was failing with 59 errors
+  across 23 files** -- this had never actually been run end-to-end.
+  Root-caused and fixed all of them:
+  - Two real bugs: a wrong return-type annotation in `aircraftsim`
+    (`_aero_and_forces` was declared to return one array but returns a
+    tuple of two), and a `rockettraj` RK4 stepper using generic
+    `zip`/tuple-comprehension in a way mypy couldn't verify preserves
+    3-tuple arity -- rewritten with explicit unpacking (numerically
+    verified identical to the original via the existing test suite).
+  - Added PEP 561 `py.typed` markers to all 47 packages (a genuine
+    gap -- none existed).
+  - ~28 sites of a real, reproducible typeshed quirk where `float **
+    float` with a non-literal exponent infers as `Any` (confirmed via
+    an isolated minimal repro before touching any production code);
+    fixed with explicit `float(...)`/`np.asarray(...)` wraps across
+    `compressibleflow`, `aerocalc`, `wingtools`, `uavpy`, `turbomachpy`,
+    `fatiguepy`, `dragpy`, `shockpy`, `nozzleanalysis`, `boundarylayer`,
+    `aerothermal`, `groundtrack`, `flightdyn`, `airfoilpy`, and
+    `aerovision`.
+  - A missing explicit type annotation on `aerounits`' shared Pint
+    `ureg` object.
+  - The remaining 24 errors were all confined to test files: missing
+    `tmp_path: Path` annotations in `aerocfd`'s tests, missing
+    `Optional[float]` narrowing before `math.isclose()` calls in
+    `aerostruct`/`aeromaterials` tests, and type-narrowing needed at
+    call sites consuming `aeroopt`'s `OptimizationResult.x` (which is
+    typed `float | np.ndarray` since it's shared between scalar and
+    multivariate optimizers).
+- One stray import-ordering issue in `nozzleanalysis` from an earlier
+  edit, caught by `ruff` and auto-fixed.
+
+Final state: 994 tests+doctests passing, `ruff check .` clean, `mypy
+packages --ignore-missing-imports` clean across all 228 source files.
+
 ## [1.0.0] — Phase 11: Unified Ecosystem (Final Release)
 
 ### Added

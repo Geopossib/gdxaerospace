@@ -63,7 +63,7 @@ def ideal_hover_power(thrust: float, total_disk_area: float, air_density: float 
         raise InvalidUAVInputError(f"total_disk_area must be positive, got {total_disk_area!r}")
     if air_density <= 0:
         raise InvalidUAVInputError(f"air_density must be positive, got {air_density!r}")
-    return thrust**1.5 / math.sqrt(2 * air_density * total_disk_area)
+    return float(thrust**1.5 / math.sqrt(2 * air_density * total_disk_area))
 
 
 def actual_hover_power(

@@ -73,7 +73,7 @@ def skin_friction_coefficient_turbulent(reynolds: float, *, model: str = "schlic
     if reynolds <= 0:
         raise ValueError(f"reynolds must be positive, got {reynolds!r}")
     if model == "prandtl":
-        return 0.074 / reynolds**0.2
+        return float(0.074 / reynolds**0.2)
     if model == "schlichting":
-        return 0.455 / (math.log10(reynolds)) ** 2.58
+        return float(0.455 / (math.log10(reynolds)) ** 2.58)
     raise InvalidDragModelError(model, valid_models=("prandtl", "schlichting"))

@@ -125,7 +125,9 @@ class Aircraft6DOF:
         self._state[3] = self.initial_airspeed
         self._state[6] = 1.0  # q0 = 1 (identity attitude)
 
-    def _aero_and_forces(self, state: np.ndarray, controls: dict[str, float]) -> np.ndarray:
+    def _aero_and_forces(
+        self, state: np.ndarray, controls: dict[str, float]
+    ) -> tuple[np.ndarray, np.ndarray]:
         velocity_body = state[3:6]
         quat = state[6:10]
         altitude = max(0.0, min(86_000.0, -state[2]))
@@ -164,6 +166,10 @@ class Aircraft6DOF:
         dcm = quaternion_to_dcm(quat)
         force_body = force_body + self.mass * gravity_body_frame(dcm, g0=G0)
 
+        # wingspan/mean_chord are resolved from None to floats in __post_init__;
+        # re-assert here so the type checker can see that invariant too.
+        assert self.wingspan is not None
+        assert self.mean_chord is not None
         moment_body = np.array(
             [
                 qbar * self.wing_area * self.wingspan * c_roll,

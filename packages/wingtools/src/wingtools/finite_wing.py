@@ -109,8 +109,8 @@ def oswald_efficiency_estimate(aspect_ratio: float, *, sweep_angle: float = 0.0)
         raise InvalidWingGeometryError(f"aspect_ratio must be positive, got {aspect_ratio!r}")
     sweep_deg = math.degrees(sweep_angle)
     if sweep_deg <= 30:
-        return 1.78 * (1 - 0.045 * aspect_ratio**0.68) - 0.64
-    return 4.61 * (1 - 0.045 * aspect_ratio**0.68) * math.cos(sweep_angle) ** 0.15 - 3.1
+        return float(1.78 * (1 - 0.045 * aspect_ratio**0.68) - 0.64)
+    return float(4.61 * (1 - 0.045 * aspect_ratio**0.68) * math.cos(sweep_angle) ** 0.15 - 3.1)
 
 
 def induced_drag_coefficient(

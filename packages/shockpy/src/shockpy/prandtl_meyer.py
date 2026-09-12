@@ -54,7 +54,7 @@ def prandtl_meyer_angle(mach: float, *, gamma: float = GAMMA_AIR) -> float:
         raise InvalidMachNumberError(mach, reason="the Prandtl-Meyer function requires M >= 1")
     g = gamma
     k = ((g + 1) / (g - 1)) ** 0.5
-    return k * math.atan(((mach**2 - 1) / k**2) ** 0.5) - math.atan((mach**2 - 1) ** 0.5)
+    return float(k * math.atan(((mach**2 - 1) / k**2) ** 0.5) - math.atan((mach**2 - 1) ** 0.5))
 
 
 def mach_from_prandtl_meyer_angle(

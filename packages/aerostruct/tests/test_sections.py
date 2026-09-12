@@ -58,6 +58,7 @@ def test_rectangle_properties_rejects_nonpositive_dimensions() -> None:
 def test_circle_properties_matches_formula() -> None:
     r = 0.05
     props = circle_properties(r)
+    assert props.j is not None
     assert math.isclose(props.area, math.pi * r**2, rel_tol=1e-9)
     assert math.isclose(props.ixx, math.pi * r**4 / 4, rel_tol=1e-9)
     assert math.isclose(props.iyy, props.ixx, rel_tol=1e-9)
@@ -67,6 +68,7 @@ def test_circle_properties_matches_formula() -> None:
 def test_circle_j_equals_two_times_i() -> None:
     """Polar moment J = Ixx + Iyy = 2*I for a circle (by symmetry)."""
     props = circle_properties(0.05)
+    assert props.j is not None
     assert math.isclose(props.j, 2 * props.ixx, rel_tol=1e-9)
 
 

@@ -48,7 +48,7 @@ def laminar_thickness(x: float, reynolds_x: float) -> float:
 
     """
     _check_reynolds(reynolds_x)
-    return 5.0 * x / reynolds_x**0.5
+    return float(5.0 * x / reynolds_x**0.5)
 
 
 def turbulent_thickness(x: float, reynolds_x: float) -> float:
@@ -68,7 +68,7 @@ def turbulent_thickness(x: float, reynolds_x: float) -> float:
 
     """
     _check_reynolds(reynolds_x)
-    return 0.37 * x / reynolds_x**0.2
+    return float(0.37 * x / reynolds_x**0.2)
 
 
 def laminar_local_skin_friction(reynolds_x: float) -> float:
@@ -81,7 +81,7 @@ def laminar_local_skin_friction(reynolds_x: float) -> float:
 
     """
     _check_reynolds(reynolds_x)
-    return 0.664 / reynolds_x**0.5
+    return float(0.664 / reynolds_x**0.5)
 
 
 def turbulent_local_skin_friction(reynolds_x: float) -> float:
@@ -94,4 +94,4 @@ def turbulent_local_skin_friction(reynolds_x: float) -> float:
 
     """
     _check_reynolds(reynolds_x)
-    return 0.0592 / reynolds_x**0.2
+    return float(0.0592 / reynolds_x**0.2)

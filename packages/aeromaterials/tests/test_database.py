@@ -16,6 +16,8 @@ def test_get_material_returns_correct_name() -> None:
 
 def test_get_material_al7075_t6_values() -> None:
     material = get_material("Al7075-T6")
+    assert material.yield_strength is not None
+    assert material.ultimate_strength is not None
     assert math.isclose(material.density, 2810.0)
     assert math.isclose(material.youngs_modulus, 71.7e9)
     assert math.isclose(material.yield_strength, 503e6)

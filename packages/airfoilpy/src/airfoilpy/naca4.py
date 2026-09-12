@@ -70,7 +70,7 @@ def naca4_thickness(
     if np.any((x < 0) | (x > 1)):
         raise ValueError("x stations must lie in [0, 1] (normalized chord).")
     a4 = _A4_CLOSED if closed_trailing_edge else _A4_OPEN
-    return (
+    return np.asarray(
         5 * thickness
         * (_A0 * np.sqrt(x) + _A1 * x + _A2 * x**2 + _A3 * x**3 + a4 * x**4)
     )

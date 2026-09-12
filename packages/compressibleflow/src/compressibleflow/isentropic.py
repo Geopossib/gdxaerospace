@@ -58,7 +58,7 @@ def stagnation_pressure_ratio(mach: float, *, gamma: float = GAMMA_AIR) -> float
 
     """
     _check_mach(mach)
-    return stagnation_temperature_ratio(mach, gamma=gamma) ** (gamma / (gamma - 1))
+    return float(stagnation_temperature_ratio(mach, gamma=gamma) ** (gamma / (gamma - 1)))
 
 
 def stagnation_density_ratio(mach: float, *, gamma: float = GAMMA_AIR) -> float:
@@ -71,7 +71,7 @@ def stagnation_density_ratio(mach: float, *, gamma: float = GAMMA_AIR) -> float:
 
     """
     _check_mach(mach)
-    return stagnation_temperature_ratio(mach, gamma=gamma) ** (1 / (gamma - 1))
+    return float(stagnation_temperature_ratio(mach, gamma=gamma) ** (1 / (gamma - 1)))
 
 
 def area_mach_ratio(mach: float, *, gamma: float = GAMMA_AIR) -> float:
@@ -102,4 +102,4 @@ def area_mach_ratio(mach: float, *, gamma: float = GAMMA_AIR) -> float:
         raise InvalidMachNumberError(mach, reason="area_mach_ratio requires Mach > 0")
     term = (2 / (gamma + 1)) * stagnation_temperature_ratio(mach, gamma=gamma)
     exponent = (gamma + 1) / (2 * (gamma - 1))
-    return (1 / mach) * term**exponent
+    return float((1 / mach) * term**exponent)

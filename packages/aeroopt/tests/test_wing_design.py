@@ -50,8 +50,10 @@ def test_optimize_aspect_ratio_is_a_local_minimum() -> None:
     """The optimum should give a lower cost than nearby points on both sides."""
     result = optimize_aspect_ratio(lift_coefficient=0.5, parasitic_drag_coefficient=0.02)
     cost_at_optimum = result.fun
-    cost_slightly_lower = total_drag_with_structural_penalty(result.x - 0.5, 0.5, 0.02)
-    cost_slightly_higher = total_drag_with_structural_penalty(result.x + 0.5, 0.5, 0.02)
+    ar = result.x
+    assert isinstance(ar, float)
+    cost_slightly_lower = total_drag_with_structural_penalty(ar - 0.5, 0.5, 0.02)
+    cost_slightly_higher = total_drag_with_structural_penalty(ar + 0.5, 0.5, 0.02)
     assert cost_at_optimum <= cost_slightly_lower
     assert cost_at_optimum <= cost_slightly_higher
 

@@ -29,5 +29,5 @@ disallow_untyped_defs = true
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
-testpaths = ["packages"]
-addopts = "-ra -q"
+testpaths = ["packages", "tests"]
+addopts = "-ra -q --doctest-modules"

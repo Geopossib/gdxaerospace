@@ -165,4 +165,5 @@ def spacecraft_equilibrium_temperature(
         raise InvalidThermalInputError(f"area_emitting must be positive, got {area_emitting!r}")
 
     absorbed_power = absorptivity * solar_flux * area_absorbing
-    return (absorbed_power / (emissivity * STEFAN_BOLTZMANN_CONSTANT * area_emitting)) ** 0.25
+    denominator = emissivity * STEFAN_BOLTZMANN_CONSTANT * area_emitting
+    return float((absorbed_power / denominator) ** 0.25)

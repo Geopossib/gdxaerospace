@@ -79,7 +79,7 @@ def basquin_life(
             f"fatigue_strength_exponent must be negative, got {fatigue_strength_exponent!r}"
         )
     ratio = stress_amplitude / fatigue_strength_coefficient
-    return ratio ** (1 / fatigue_strength_exponent)
+    return float(ratio ** (1 / fatigue_strength_exponent))
 
 
 def basquin_stress_amplitude(
@@ -127,7 +127,7 @@ def basquin_stress_amplitude(
         raise InvalidFatigueInputError(
             f"fatigue_strength_exponent must be negative, got {fatigue_strength_exponent!r}"
         )
-    return fatigue_strength_coefficient * cycles**fatigue_strength_exponent
+    return float(fatigue_strength_coefficient * cycles**fatigue_strength_exponent)
 
 
 def miners_rule_damage(cycles_applied: list[float], cycles_to_failure: list[float]) -> float:

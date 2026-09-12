@@ -25,7 +25,7 @@ import pint
 #: Importing this instead of creating a new UnitRegistry() elsewhere is
 #: required for cross-package unit compatibility (Pint quantities from two
 #: different registries cannot be combined).
-ureg = pint.UnitRegistry(autoconvert_offset_to_baseunit=True)
+ureg: pint.UnitRegistry = pint.UnitRegistry(autoconvert_offset_to_baseunit=True)
 
 # Aerospace-relevant aliases not always enabled by default in Pint.
 ureg.define("nautical_mile = 1852 * meter = nmi")

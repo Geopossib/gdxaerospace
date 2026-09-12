@@ -124,7 +124,7 @@ def sutherland_viscosity(temperature: float) -> float:
     if temperature <= 0:
         raise ValueError(f"temperature must be positive Kelvin, got {temperature!r}")
     t_ratio = temperature / _SUTHERLAND_T_REF
-    return (
+    return float(
         _SUTHERLAND_MU_REF
         * t_ratio**1.5
         * (_SUTHERLAND_T_REF + _SUTHERLAND_S)
