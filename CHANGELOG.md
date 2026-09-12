@@ -3,6 +3,33 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [1.0.0] — Phase 11: Unified Ecosystem (Final Release)
+
+### Added
+- `gdxaerospace`: the unified meta-package. Depends on all 46 packages
+  built across the project's ten development phases, so a single
+  install pulls in the entire ecosystem. Provides a curated manifest
+  (`list_packages`, `package_info`, `phase_names`) for programmatic
+  ecosystem discovery -- verified by a test that diffs the manifest
+  against the actual workspace directory listing, so a forgotten or
+  misspelled entry would fail CI rather than go unnoticed.
+  Deliberately does NOT flatten all 46 packages' symbols into one
+  namespace (collision risk with similarly-named exceptions/functions
+  across packages); it's a dependency bundle and a discovery API, not
+  a namespace merge.
+- A capstone example script exercising structures (`aeromaterials`,
+  `aerostruct`, `stresspy`), orbital mechanics (`orbitpy`), satellite
+  telemetry (`sattelemetry`), and UAV sizing (`uavpy`) together in one
+  small end-to-end walk-through, plus an ecosystem-wide phase/package
+  summary.
+- Final ecosystem totals: 46 packages, 798 tests, 196 doctests, `ruff
+  check .` clean across the whole workspace, 11 example scripts (one
+  per phase plus this capstone), all independently runnable.
+
+This closes out the ten-phase build plan (Foundation through UAV/AI/
+Optimization) with a unifying meta-package, marking GDX Aerospace's
+first complete-ecosystem release.
+
 ## [0.10.0] — Phase 10: UAV, Computer Vision, Rocket Trajectory, and Optimization
 
 ### Added

@@ -1,0 +1,114 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "gdxaerospace"
+version = "1.0.0"
+description = "GDX Aerospace — the unified meta-package for the full aerospace engineering ecosystem"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "GDX Tech Co. Ltd" }]
+dependencies = [
+    "aerocalc",
+    "aerounits",
+    "airfoilpy",
+    "wingtools",
+    "dragpy",
+    "compressibleflow",
+    "shockpy",
+    "boundarylayer",
+    "aeroprop",
+    "rocketperf",
+    "nozzleanalysis",
+    "combustionpy",
+    "turbomachpy",
+    "electricprop",
+    "plasmathrust",
+    "plume3d",
+    "plasmaspace",
+    "attitude3d",
+    "flightdyn",
+    "aircraftsim",
+    "guidancepy",
+    "navigationpy",
+    "autopilotpy",
+    "kalmanflight",
+    "orbitpy",
+    "tletools",
+    "satprop",
+    "groundtrack",
+    "missionpy",
+    "constellationpy",
+    "sattelemetry",
+    "aeromaterials",
+    "aerostruct",
+    "stresspy",
+    "sparcalc",
+    "bucklingpy",
+    "fatiguepy",
+    "compositepy",
+    "laminatepy",
+    "aerothermal",
+    "aerocfd",
+    "aerodata",
+    "uavpy",
+    "aerovision",
+    "rockettraj",
+    "aeroopt",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/gdxaerospace"]
+
+[tool.uv.sources]
+aerocalc = { workspace = true }
+aerounits = { workspace = true }
+airfoilpy = { workspace = true }
+wingtools = { workspace = true }
+dragpy = { workspace = true }
+compressibleflow = { workspace = true }
+shockpy = { workspace = true }
+boundarylayer = { workspace = true }
+aeroprop = { workspace = true }
+rocketperf = { workspace = true }
+nozzleanalysis = { workspace = true }
+combustionpy = { workspace = true }
+turbomachpy = { workspace = true }
+electricprop = { workspace = true }
+plasmathrust = { workspace = true }
+plume3d = { workspace = true }
+plasmaspace = { workspace = true }
+attitude3d = { workspace = true }
+flightdyn = { workspace = true }
+aircraftsim = { workspace = true }
+guidancepy = { workspace = true }
+navigationpy = { workspace = true }
+autopilotpy = { workspace = true }
+kalmanflight = { workspace = true }
+orbitpy = { workspace = true }
+tletools = { workspace = true }
+satprop = { workspace = true }
+groundtrack = { workspace = true }
+missionpy = { workspace = true }
+constellationpy = { workspace = true }
+sattelemetry = { workspace = true }
+aeromaterials = { workspace = true }
+aerostruct = { workspace = true }
+stresspy = { workspace = true }
+sparcalc = { workspace = true }
+bucklingpy = { workspace = true }
+fatiguepy = { workspace = true }
+compositepy = { workspace = true }
+laminatepy = { workspace = true }
+aerothermal = { workspace = true }
+aerocfd = { workspace = true }
+aerodata = { workspace = true }
+uavpy = { workspace = true }
+aerovision = { workspace = true }
+rockettraj = { workspace = true }
+aeroopt = { workspace = true }

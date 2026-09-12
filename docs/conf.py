@@ -49,6 +49,7 @@ sys.path.insert(0, os.path.abspath("../packages/uavpy/src"))
 sys.path.insert(0, os.path.abspath("../packages/aerovision/src"))
 sys.path.insert(0, os.path.abspath("../packages/rockettraj/src"))
 sys.path.insert(0, os.path.abspath("../packages/aeroopt/src"))
+sys.path.insert(0, os.path.abspath("../packages/gdxaerospace/src"))
 
 project = "GDX Aerospace"
 copyright = "2026, GDX Tech Co. Ltd"

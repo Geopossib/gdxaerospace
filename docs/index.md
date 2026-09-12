@@ -65,5 +65,6 @@ api/uavpy
 api/aerovision
 api/rockettraj
 api/aeroopt
+api/gdxaerospace
 limitations
 ```

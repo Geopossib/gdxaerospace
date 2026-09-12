@@ -15,10 +15,12 @@ It is built for aerospace engineering students, researchers, universities,
 UAV developers, satellite engineers, and aerospace startups who need real,
 citable, tested engineering calculations — not toy demonstrations.
 
-> **Status:** Phases 1-10 (Foundation, Aerodynamics, Propulsion, Electric
-> Propulsion, Flight Dynamics/GNC, Space, Satellite Telemetry,
-> Structures/Materials, Thermal/CFD/Data, and UAV/Vision/Trajectory/
-> Optimization) are complete. See [Roadmap](#roadmap).
+> **Status:** All 11 phases are complete (Foundation, Aerodynamics,
+> Propulsion, Electric Propulsion, Flight Dynamics/GNC, Space, Satellite
+> Telemetry, Structures/Materials, Thermal/CFD/Data, UAV/Vision/
+> Trajectory/Optimization, and the unified `gdxaerospace` meta-package).
+> The full ecosystem — 46 packages, 798 tests, 196 doctests — is live.
+> See [Roadmap](#roadmap).
 
 ## Design principles
 
@@ -89,7 +91,7 @@ gdxaerospace/
 │   ├── aerovision/    # CV interfaces (Protocols) + classical Sobel edge detection
 │   ├── rockettraj/    # Vertical rocket trajectory (powered ascent, coast, apogee)
 │   ├── aeroopt/       # SciPy optimization wrapper + worked design-optimization example
-│   └── ...            # more packages land in later phases
+│   └── gdxaerospace/  # Unified meta-package: depends on all 46 packages, ecosystem manifest
 ├── docs/
 ├── examples/
 ├── tests/
@@ -239,6 +241,14 @@ opt = optimize_aspect_ratio(lift_coefficient=0.5, parasitic_drag_coefficient=0.0
 print(opt.x)  # ~7.76, matches a closed-form solution to 6 sig figs
 ```
 
+```python
+from gdxaerospace import list_packages, package_info, phase_names
+
+list_packages(phase=6)          # ['constellationpy', 'groundtrack', 'missionpy', 'orbitpy', 'satprop', 'tletools']
+package_info("orbitpy").phase   # 6
+phase_names()[6]                # 'Space'
+```
+
 ## Testing
 
 ```bash
@@ -272,7 +282,7 @@ package's `tests/` directory and docstrings for the specific source cited.
       `aerodata`
 - [x] **Phase 10 — UAV / AI / optimization**: `uavpy`, `aerovision`,
       `rockettraj`, `aeroopt`
-- [ ] **Phase 11 — Unified ecosystem**: `gdxaerospace` meta-package
+- [x] **Phase 11 — Unified ecosystem**: `gdxaerospace` meta-package
 
 ## Contributing
 
