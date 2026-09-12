@@ -3,6 +3,38 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.10.0] — Phase 10: UAV, Computer Vision, Rocket Trajectory, and Optimization
+
+### Added
+- `uavpy`: fixed-wing sizing (wing loading, thrust-to-weight, stall
+  speed) and a `Multirotor` class using actuator-disk momentum theory
+  (not an empirical guess) for hover power and flight-time estimation.
+  A 2.5 kg quad with a 5000 mAh 6S-class battery gives ~18.6 min of
+  estimated flight time, consistent with real small-multirotor
+  performance.
+- `aerovision`: `Protocol`-based interfaces (`ImageClassifier`,
+  `ObjectDetector`, `AnomalyDetector`) for future PyTorch/ONNX/OpenCV
+  backends, with the core package requiring none of those heavy
+  dependencies, plus one genuinely working classical baseline:
+  dependency-free (numpy-only) Sobel-gradient edge/crack highlighting.
+- `rockettraj`: single-stage vertical trajectory simulation (thrust,
+  gravity, altitude-varying drag via `aerocalc.Atmosphere`, linear
+  mass depletion) via fixed-step RK4. Validated against closed-form
+  kinematics in the negligible-drag case, matching to 7 significant
+  figures. Documents a real, small (~0.02%) mass-conservation artifact
+  from fixed-step RK4 crossing the burn_time thrust discontinuity.
+- `aeroopt`: a thin wrapper around `scipy.optimize` (`minimize_scalar_bounded`,
+  `minimize_with_bounds`) plus a worked example -- minimizing induced
+  drag plus a structural-weight penalty over wing aspect ratio -- whose
+  numerical result is checked against an independent closed-form
+  solution (`AR_opt = (CL^2/(2*k*pi*e))^(1/3)`) and matches to 6
+  significant figures.
+- UAV/vision/trajectory/optimization theory docs, API reference pages
+  for all four packages, and an example script covering UAV sizing,
+  classical crack detection, a sounding-rocket trajectory, and a
+  design-optimization run.
+- 788 tests + 193 doctests passing, ruff clean across all 45 packages.
+
 ## [0.9.0] — Phase 9: Thermal Analysis, CFD Automation, and Flight Data
 
 ### Added

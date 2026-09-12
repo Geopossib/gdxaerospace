@@ -45,6 +45,10 @@ sys.path.insert(0, os.path.abspath("../packages/laminatepy/src"))
 sys.path.insert(0, os.path.abspath("../packages/aerothermal/src"))
 sys.path.insert(0, os.path.abspath("../packages/aerocfd/src"))
 sys.path.insert(0, os.path.abspath("../packages/aerodata/src"))
+sys.path.insert(0, os.path.abspath("../packages/uavpy/src"))
+sys.path.insert(0, os.path.abspath("../packages/aerovision/src"))
+sys.path.insert(0, os.path.abspath("../packages/rockettraj/src"))
+sys.path.insert(0, os.path.abspath("../packages/aeroopt/src"))
 
 project = "GDX Aerospace"
 copyright = "2026, GDX Tech Co. Ltd"

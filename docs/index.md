@@ -18,6 +18,7 @@ theory/orbital-mechanics
 theory/satellite-telemetry
 theory/structures-and-materials
 theory/thermal-cfd-and-data
+theory/uav-vision-trajectory-and-optimization
 api/aerocalc
 api/aerounits
 api/airfoilpy
@@ -60,5 +61,9 @@ api/laminatepy
 api/aerothermal
 api/aerocfd
 api/aerodata
+api/uavpy
+api/aerovision
+api/rockettraj
+api/aeroopt
 limitations
 ```

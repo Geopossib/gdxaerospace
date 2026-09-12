@@ -15,10 +15,10 @@ It is built for aerospace engineering students, researchers, universities,
 UAV developers, satellite engineers, and aerospace startups who need real,
 citable, tested engineering calculations — not toy demonstrations.
 
-> **Status:** Phases 1-9 (Foundation, Aerodynamics, Propulsion, Electric
+> **Status:** Phases 1-10 (Foundation, Aerodynamics, Propulsion, Electric
 > Propulsion, Flight Dynamics/GNC, Space, Satellite Telemetry,
-> Structures/Materials, and Thermal/CFD/Data) are complete. See
-> [Roadmap](#roadmap).
+> Structures/Materials, Thermal/CFD/Data, and UAV/Vision/Trajectory/
+> Optimization) are complete. See [Roadmap](#roadmap).
 
 ## Design principles
 
@@ -85,6 +85,10 @@ gdxaerospace/
 │   ├── aerothermal/   # Conduction/convection/radiation, thermal resistance networks
 │   ├── aerocfd/       # OpenFOAM case generation, execution, and post-processing
 │   ├── aerodata/      # Flight-test/telemetry filtering, resampling, outlier detection
+│   ├── uavpy/         # Multirotor hover power/flight time, fixed-wing sizing
+│   ├── aerovision/    # CV interfaces (Protocols) + classical Sobel edge detection
+│   ├── rockettraj/    # Vertical rocket trajectory (powered ascent, coast, apogee)
+│   ├── aeroopt/       # SciPy optimization wrapper + worked design-optimization example
 │   └── ...            # more packages land in later phases
 ├── docs/
 ├── examples/
@@ -219,6 +223,22 @@ case.set_angle_of_attack(5.0)
 case.generate()  # writes 0/U, 0/p, constant/*, system/controlDict
 ```
 
+```python
+from uavpy import Multirotor
+from rockettraj import RocketConfig, simulate_trajectory
+from aeroopt import optimize_aspect_ratio
+
+quad = Multirotor(mass=2.5, num_motors=4, rotor_radius=0.127, battery_voltage=22.2, battery_capacity_mah=5000)
+print(quad.flight_time_minutes())  # ~18.6 min
+
+config = RocketConfig(dry_mass=5.0, propellant_mass=2.0, burn_time=3.0, thrust=200.0, drag_coefficient=0.5, reference_area=0.01)
+result = simulate_trajectory(config)
+print(result.apogee_altitude)  # ~311 m
+
+opt = optimize_aspect_ratio(lift_coefficient=0.5, parasitic_drag_coefficient=0.02)
+print(opt.x)  # ~7.76, matches a closed-form solution to 6 sig figs
+```
+
 ## Testing
 
 ```bash
@@ -250,7 +270,7 @@ package's `tests/` directory and docstrings for the specific source cited.
       `aeromaterials`
 - [x] **Phase 9 — Thermal / CFD / data**: `aerothermal`, `aerocfd`,
       `aerodata`
-- [ ] **Phase 10 — UAV / AI / optimization**: `uavpy`, `aerovision`,
+- [x] **Phase 10 — UAV / AI / optimization**: `uavpy`, `aerovision`,
       `rockettraj`, `aeroopt`
 - [ ] **Phase 11 — Unified ecosystem**: `gdxaerospace` meta-package
 

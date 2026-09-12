@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "uavpy"
+version = "0.1.0"
+description = "UAV sizing and performance estimation (multirotor hover power, fixed-wing wing loading/stall speed) for the GDX Aerospace ecosystem"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "GDX Tech Co. Ltd" }]
+dependencies = [
+    "aerocalc",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/uavpy"]
+
+[tool.uv.sources]
+aerocalc = { workspace = true }
