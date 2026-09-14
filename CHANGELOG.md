@@ -3,6 +3,53 @@
 All notable changes to this project are documented in this file.
 Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
 
+# Changelog
+
+All notable changes to this project are documented in this file.
+Format loosely follows [Keep a Changelog](https://keepachangelog.com/).
+
+## [1.0.2] — Documentation Build Correctness
+
+A second maintenance patch: verifies and fixes the Sphinx documentation
+build, which (like doctests and mypy before it) had never actually been
+run end-to-end despite `docs.yml` claiming to build it on every push.
+
+### Fixed
+- Confirmed the docs actually build (`sphinx-build -b html docs
+  docs/_build/html`, matching `docs.yml` exactly), but with 74 warnings
+  that had never been looked at. Investigated and fixed the real ones:
+  - A markup bug in `nozzleanalysis` (a stray space inside an inline
+    code span breaking RST parsing).
+  - 16 malformed docstring section headers (`Example:`/`Raises:` with
+    underline lengths that didn't match the header text) across 10
+    packages.
+  - A genuinely ambiguous cross-reference in `shockpy`, where a
+    `Returns` field name collided with two different classes'
+    attributes of the same name -- fixed by rewriting the field as
+    prose instead of a name-like declaration.
+- **Root-caused a real, previously-missing ruff config gap**:
+  `pyproject.toml` never set `pydocstyle.convention = "numpy"`.
+  Without it, ruff's own `D416`/`D409` rules disagreed with each other
+  on short docstrings in a self-contradictory way -- confirmed via an
+  isolated minimal repro, not assumed -- and satisfying ruff's literal
+  fix suggestion would have reintroduced the exact header/underline
+  mismatch that breaks Sphinx. Setting the convention explicitly
+  resolved the conflict with zero new violations anywhere in the
+  46-package codebase.
+- The remaining 56 warnings (heading-anchor collisions from every
+  package's docstrings sharing the same "Reference"/"Convention"/
+  "Assumptions" section names) were confirmed benign by tracing them to
+  Sphinx's own source (they carry no suppressible warning type) and by
+  grepping the codebase for any `:ref:` that depends on them (none) --
+  documented precisely in `docs/conf.py` rather than silently ignored.
+- Added `data/README.md` for consistency with the other scaffolded
+  top-level directories (`benchmarks/`, `notebooks/`, `scripts/`), and
+  removed a stray untracked empty subdirectory.
+
+Final state: 994 tests+doctests passing, `ruff check .` clean, `mypy`
+clean across all 228 source files, docs build succeeds with only the
+documented-benign warnings.
+
 ## [1.0.1] — CI Correctness Hardening
 
 This is a maintenance patch on top of the v1.0.0 complete-ecosystem

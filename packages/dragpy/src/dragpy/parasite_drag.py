@@ -91,7 +91,7 @@ class ParasiteDragBuildup:
     def cd0(self) -> float:
         """Total parasitic (zero-lift) drag coefficient ``CD0``.
 
-        Example:
+        Example
         -------
         >>> buildup = ParasiteDragBuildup(reference_area=16.2)
         >>> buildup.add(DragComponent("wing", 0.003, wetted_area=30.0, form_factor=1.2))

@@ -122,9 +122,9 @@ def expansion_fan(
 
     Returns
     -------
-    (mach2, stagnation_pressure_ratio):
-        Downstream Mach number and ``p02/p01``. Expansions are isentropic,
-        so ``p02/p01 = 1.0`` always.
+    tuple[float, float]
+        A 2-tuple of the downstream Mach number and the stagnation-pressure
+        ratio ``p02/p01``. Expansions are isentropic, so ``p02/p01 = 1.0`` always.
 
     Example
     -------

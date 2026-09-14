@@ -74,7 +74,7 @@ def turbulent_thickness(x: float, reynolds_x: float) -> float:
 def laminar_local_skin_friction(reynolds_x: float) -> float:
     """Local skin-friction coefficient, laminar: ``Cf_x = 0.664 / sqrt(Re_x)``.
 
-    Example:
+    Example
     -------
     >>> round(laminar_local_skin_friction(1e6), 5)
     0.00066
@@ -87,7 +87,7 @@ def laminar_local_skin_friction(reynolds_x: float) -> float:
 def turbulent_local_skin_friction(reynolds_x: float) -> float:
     """Local skin-friction coefficient, turbulent (1/7-power-law): ``Cf_x = 0.0592 / Re_x^0.2``.
 
-    Example:
+    Example
     -------
     >>> round(turbulent_local_skin_friction(1e7), 5)
     0.00236

@@ -61,7 +61,7 @@ class DeltaVBudget:
     def total_with_margin(self) -> float:
         """Compute total delta-v including the configured margin, m/s.
 
-        Example:
+        Example
         -------
         >>> budget = DeltaVBudget(margin_fraction=0.05)
         >>> budget.add("orbit insertion", 3000.0)

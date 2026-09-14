@@ -21,6 +21,17 @@ ignore = ["D203", "D213", "D105", "D107"]
 [tool.ruff.lint.per-file-ignores]
 "**/tests/**" = ["D"]
 
+# Every docstring in this codebase is written in numpydoc style
+# (Parameters/Returns/Raises/Example, no trailing colons). Without this
+# setting, ruff's D416/D409 pair disagreed with each other on short
+# (one-liner-summary-plus-Example) docstrings specifically: D416 wanted
+# "Example:" while D409 then wanted its underline sized for "Example"
+# (no colon) -- a self-contradictory combination that, if followed, would
+# have produced exactly the header/underline-length mismatch that breaks
+# Sphinx's RST parser. Setting the convention explicitly resolves this.
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
 [tool.mypy]
 python_version = "3.11"
 warn_return_any = true

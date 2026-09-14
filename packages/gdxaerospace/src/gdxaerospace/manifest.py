@@ -290,7 +290,7 @@ def package_info(name: str) -> PackageInfo:
 def phase_names() -> dict[int, str]:
     """Return a mapping of phase number to phase name.
 
-    Example:
+    Example
     -------
     >>> phase_names()[1]
     'Foundation'

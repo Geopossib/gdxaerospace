@@ -8,7 +8,7 @@ Internal computation across GDX Aerospace is always performed in SI units.
 ``aerounits`` is meant to sit at API boundaries, converting user-friendly
 units (knots, feet, psi, ...) to and from SI.
 
-Example:
+Example
 -------
 >>> from aerounits import Q_
 >>> speed = Q_(250, "knot").to("m/s")

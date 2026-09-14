@@ -51,7 +51,7 @@ def stagnation_temperature_ratio(mach: float, *, gamma: float = GAMMA_AIR) -> fl
 def stagnation_pressure_ratio(mach: float, *, gamma: float = GAMMA_AIR) -> float:
     """``p0/p = (T0/T)^(gamma/(gamma-1))`` (Anderson Eq. 8.42).
 
-    Example:
+    Example
     -------
     >>> round(stagnation_pressure_ratio(2.0), 3)
     7.824
@@ -64,7 +64,7 @@ def stagnation_pressure_ratio(mach: float, *, gamma: float = GAMMA_AIR) -> float
 def stagnation_density_ratio(mach: float, *, gamma: float = GAMMA_AIR) -> float:
     """``rho0/rho = (T0/T)^(1/(gamma-1))`` (Anderson Eq. 8.41).
 
-    Example:
+    Example
     -------
     >>> round(stagnation_density_ratio(2.0), 3)
     4.347

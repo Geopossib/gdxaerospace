@@ -44,9 +44,10 @@ from __future__ import annotations
 
 import math
 
-from plasmaspace.exceptions import InvalidSpacePlasmaInputError
 from plasmathrust.constants import ELECTRON_MASS, ELEMENTARY_CHARGE
 from plasmathrust.plasma_parameters import bohm_velocity
+
+from plasmaspace.exceptions import InvalidSpacePlasmaInputError
 
 
 def electron_thermal_flux(electron_density: float, electron_temperature_ev: float) -> float:

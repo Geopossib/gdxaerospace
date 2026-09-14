@@ -92,7 +92,7 @@ def exit_mach_from_area_ratio(
     tolerance: float = 1e-9,
     max_iterations: int = 200,
 ) -> float:
-    """Invert the isentropic area-Mach relation ``A/A* `` for the exit Mach number.
+    """Invert the isentropic area-Mach relation ``A/A*`` for the exit Mach number.
 
     Two solutions exist for any ``area_ratio > 1`` (one subsonic, one
     supersonic); a converging-diverging nozzle operating supersonically

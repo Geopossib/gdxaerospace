@@ -99,7 +99,7 @@ class HallThruster(ElectrostaticThruster):
 
     Uses the same ideal electrostatic relations as :class:`ElectrostaticThruster`.
 
-    Example:
+    Example
     -------
     >>> thruster = HallThruster(voltage=300.0, current=5.0, mass_flow=5e-6)
     >>> round(thruster.thrust(), 4)
@@ -118,7 +118,7 @@ class IonThruster(ElectrostaticThruster):
 
     Uses the same ideal electrostatic relations as :class:`ElectrostaticThruster`.
 
-    Example:
+    Example
     -------
     >>> thruster = IonThruster(voltage=1200.0, current=1.76, mass_flow=3.4e-6, propellant="xenon")
     >>> round(thruster.specific_impulse(), 0)

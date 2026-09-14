@@ -73,7 +73,7 @@ def circular_velocity(radius: float, *, mu: float = EARTH_MU) -> float:
 def escape_velocity(radius: float, *, mu: float = EARTH_MU) -> float:
     """Escape velocity: ``v = sqrt(2*mu/r)``.
 
-    Example:
+    Example
     -------
     >>> round(escape_velocity(6_378_137.0), 1)
     11179.9
@@ -200,7 +200,7 @@ def true_anomaly_from_eccentric(eccentric_anomaly: float, eccentricity: float) -
 def eccentric_anomaly_from_true(true_anomaly: float, eccentricity: float) -> float:
     """Convert true anomaly to eccentric anomaly (inverse of :func:`true_anomaly_from_eccentric`).
 
-    Example:
+    Example
     -------
     >>> nu = true_anomaly_from_eccentric(1.088598, 0.1)
     >>> round(eccentric_anomaly_from_true(nu, 0.1), 6)

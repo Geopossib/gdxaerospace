@@ -145,7 +145,7 @@ def ecef_to_eci(position_ecef: np.ndarray, gmst_rad: float) -> np.ndarray:
 
     Inverse of :func:`eci_to_ecef`.
 
-    Example:
+    Example
     -------
     >>> import numpy as np
     >>> import math

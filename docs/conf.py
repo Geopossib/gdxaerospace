@@ -69,6 +69,19 @@ myst_enable_extensions = ["dollarmath", "colon_fence"]
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
+# NOTE on "duplicate label" build warnings: every module docstring across the
+# ~46-package ecosystem follows the same "Reference" / "Convention" /
+# "Assumptions" section-heading convention (by design, for consistency), and
+# MyST auto-generates an anchor label for every heading, so these headings
+# collide across api/*.md pages. These warnings are cosmetic, not build- or
+# link-breaking: Sphinx's own duplicate-label log call
+# (sphinx.domains.std.StandardDomain.note_object) doesn't attach a
+# type/subtype, so `suppress_warnings` cannot filter it (confirmed against
+# Sphinx's source rather than assumed) -- and nothing in this codebase or its
+# docs uses an explicit :ref: to any of these auto-generated labels (verified
+# via grep), so the collisions never produce a broken link. docs.yml does not
+# pass -W, so these warnings do not fail the docs build.
+
 html_theme = "sphinx_rtd_theme"
 html_static_path = []
 

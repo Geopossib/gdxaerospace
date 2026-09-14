@@ -295,7 +295,7 @@ def quaternion_multiply(q: np.ndarray, p: np.ndarray) -> np.ndarray:
 def quaternion_conjugate(q: np.ndarray) -> np.ndarray:
     """Quaternion conjugate ``[q0, -q1, -q2, -q3]`` (the inverse rotation, for a unit quaternion).
 
-    Example:
+    Example
     -------
     >>> import numpy as np
     >>> quaternion_conjugate(np.array([0.5, 0.5, 0.5, 0.5]))
@@ -314,12 +314,12 @@ def quaternion_normalize(q: np.ndarray) -> np.ndarray:
     renormalizing periodically (e.g. once per integration step) keeps the
     quaternion a valid rotation representation.
 
-    Raises:
+    Raises
     ------
     InvalidAttitudeInputError
         If ``q`` has near-zero norm (not a valid rotation quaternion).
 
-    Example:
+    Example
     -------
     >>> import numpy as np
     >>> round(float(np.linalg.norm(quaternion_normalize(np.array([2.0, 0.0, 0.0, 0.0])))), 9)
